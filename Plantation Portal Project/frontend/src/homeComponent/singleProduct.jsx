@@ -118,7 +118,7 @@ function SingleProduct(props) {
 
               <Box className={classes.actions} md="12">
                 <Button mb="12" md="12" variant="contained" color="success">
-                  Login
+                  Add to Cart
                 </Button>
               </Box>
             </Card>

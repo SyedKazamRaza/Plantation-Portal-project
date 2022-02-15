@@ -13,7 +13,7 @@ export default function HomeNavbar(props) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="indexNavLeft">
             <Nav className={"containerspace me-auto"}>
-              <Link to="/home" style={{color: 'white', marginLeft: "7%"}} className={"nav-link" }>Home</Link>
+              <Link to="/" style={{color: 'white', marginLeft: "7%"}} className={"nav-link" }>Home</Link>
               <Link to="/plants" style={{color: 'white', marginLeft: "7%"}}  className="nav-link">Plants</Link>
               <Link to="/fertilizers" style={{color: 'white', marginLeft: "7%"}}  className="nav-link">Fertilizers</Link>
               <Link to="/seeds" style={{color: 'white', marginLeft: "7%"}}  className="nav-link">Seeds</Link>
