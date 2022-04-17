@@ -107,13 +107,13 @@ router.get("/allChats/singleChat/:role/:id/:secondId", async (req, res) => {
   if (role === "cust") {
     userChat = await Chat.find({
       $and: [{ firstUser: userId }, { secondUser: secondId }],
-    });
+    }).sort({lastMsgTime: -1});
     return res.status(200).send(userChat[0].message);
 
   } else if(role === "seller"){
     userChat = await Chat.find({
-      $and: [{ firstUser: secondId }, { secondUser: userId }],
-    });
+      $and: [{ firstUser: secondId }, { secondUser: userId }]
+    }).sort({lastMsgTime: -1});
     return res.status(200).send(userChat[0].message);
   }
 

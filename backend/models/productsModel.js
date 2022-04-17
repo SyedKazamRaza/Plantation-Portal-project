@@ -9,6 +9,14 @@ const productsSchema = new mongoose.Schema({
   imageurl: { type: String, required: true },
   itemsAvailable: { type: Number, required: true },
   postedDate: { type: String, required: true },
+
+  category: { type: String, required: true },
+  season: { type: String },
+  place: { type: String},
+  type: { type: String },
+  rating: { type: String },
+
+
   storeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Store",

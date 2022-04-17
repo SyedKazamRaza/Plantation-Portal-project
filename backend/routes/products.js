@@ -4,12 +4,41 @@ const { Products } = require("../models/productsModel");
 const { Category } = require("../models/categoryModel");
 const { Store } = require("../models/storeModel");
 
-router.get("/", (req, res) => {
-  res.send("I am product router");
-});
+// router.get("/", (req, res) => {
+//   res.send("I am product router");
+// });
 
-router.get("/hello", (req, res) => {
-  res.send("I am router");
+router.get("/allProducts", async (req, res) => {
+
+  Products.aggregate(
+    [
+      {
+        $lookup: {
+          from: "stores", // collection to join - Should have same name as collection mongoDB
+          localField: "storeId", //field from the input documents
+          foreignField: "_id", //field from the documents of the "from" collection
+          as: "storeInfo", // output array field
+        },
+      },
+      {
+        "$project": {                       //field we don't want to include in result
+          "storeInfo.totalEarning": 0,
+          "storeInfo.ordersCompleted": 0,
+          "storeInfo.status": 0,
+          "storeInfo.username": 0,
+          "storeInfo.password": 0,
+        }
+      }
+    ],
+    function (error, data) {
+      if(error){
+        console.log("Error received");
+        res.json([]);
+      }
+      console.log(data);
+      res.json(data);
+    }
+  );
 });
 
 var storeArray = [];
@@ -62,36 +91,7 @@ router.get("/allproduct/:category", async (req, res) => {
           console.log("Promise NOT fulfilled " + err);
         });
     }
-    // prod.map(async (singleProd) => {
-    //   await promise(singleProd)
-    //     .then((value) => {
-    //     //   console.log("Promise fulfilled" + value);
-    //     if(value){
-    //         productsToSend.push(singleProd);
-    //     }
-    //     console.log(productsToSend);
-    //     })
-    //     .catch((err) => {
-    //       console.log("Promise NOT fulfilled " + err);
-    //     });
-    // })
-    // res.send(productsToSend);
-
-    // console.log(productsCategory);
-
-    // productsToSend = prod.filter(async (singleProd) => {
-    //   const selectedProd = await Category.findOne({
-    //     _id: singleProd.categoryId,
-    //   });
-    //   if (selectedProd.categoryName === reqCategory) {
-    //     console.log("inside");
-    //     return true;
-    //   }
-    //   return false;
-    // });
-    // console.log(productsToSend.length);
-    // // res.send(productsToSend);
-    // res.json(productsToSend)
+       // res.json(productsToSend)
   } catch (err) {
     res.status(201).send("Error in getting the products..");
   }

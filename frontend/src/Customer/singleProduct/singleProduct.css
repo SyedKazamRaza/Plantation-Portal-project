@@ -1,0 +1,69 @@
+.desc h6:hover{
+    color: red;
+    font-weight: bold;
+  }
+  :root{
+    --bordersize: 1px;
+  }
+  .relatedProduct{
+    flex: 1 0 25%;
+    border-left: var(--bordersize) dashed #ccc;
+    border-bottom: var(--bordersize) dashed #ccc;
+    margin-left: calc(-1 * var(--bordersize));
+    margin-bottom: calc(-1 * var(--bordersize));
+  }
+
+  .relatedProduct img{
+    margin: 20px;
+    transition: transform 0.2s 0.05s;
+  }
+
+  .relatedProduct img:hover{
+    transform: scale(1.3);
+    transition-delay: 0s;
+  }
+
+  body{
+    font-family: sans-serif;
+    text-align: center;
+    color: #555;
+  }
+ 
+  .contactSeller {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none; 
+    --c: #4682B4;
+    color: var(--c);
+    font-size: 16px;
+    border: 1px solid #4682B4;
+    border-radius: 2.2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: sans-serif;
+    /* letter-spacing: 0.1em; */
+    text-align: center;
+    line-height: 2em;
+    /* position: relative; */
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.contactSeller:hover{
+  background-color: #4682B4;
+  color: white;
+}
+
+.productNamePrice h1, .productNamePrice p{
+  display: inline;
+  vertical-align: top;
+}
+
+.productNamePrice p{
+  font-size: 35px;
+  color: red;
+  margin-left: 50%;
+}
